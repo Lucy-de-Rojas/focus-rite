@@ -1,3 +1,46 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@font-face {
+        font-family: "TT Black";
+        src: url(../Fonts/TT\ Norms\ Pro\ Serif\ Trial\ Black.ttf);
+}
+
+
+@font-face {
+        font-family: "TT Bold";
+        src: url(../Fonts/TT\ Norms\ Pro\ Serif\ Trial\ Bold.ttf);
+}
+
+@font-face {
+        font-family: "TT Regular";
+        src: url(../Fonts/TT\ Norms\ Pro\ Serif\ Trial\ Regular.ttf);
+}
+
+
+@font-face {
+        font-family: "TT Medium";
+        src: url(../Fonts/TT\ Norms\ Pro\ Serif\ Trial\ Medium.ttf);
+}
+
+
+
+
+:root{
+        --white: #ffffff;
+        --black:#111420;
+        --grey: #222633;
+        --blue: #363964;
+        --red:#f07777;
+        --green: rgb(165, 241, 141);
+}
+
+
+
+* {
+        font-family: "TT Regular";
+        box-sizing: border-box;
+        color: rgb(92, 230, 50);
+}

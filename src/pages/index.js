@@ -12,6 +12,12 @@ export default function Home() {
 
 
 
+  let rowStyling = "bg-[--grey] py-4 pl-3 content-center";
+  let red = "#f07777";
+  let green = "rgb(165, 241, 141)";
+
+
+
 
 
 
@@ -19,6 +25,8 @@ export default function Home() {
 function handleOnDragLeave(e) {
   e.preventDefault();
   setMessage(">> Drop Files Here <<");
+  let dropBox = document.getElementById("dropBox");
+  dropBox.style.backgroundColor = "white";
 }
 
 
@@ -28,6 +36,8 @@ function handleOnDragLeave(e) {
 
   function handleOnDragOver(e) {
     e.preventDefault();
+    let dropBox = document.getElementById("dropBox");
+    dropBox.style.backgroundColor = "gray";
 
   }
 
@@ -47,6 +57,7 @@ function handleOnDragLeave(e) {
 
   function handleOnDrop(e) {
     e.preventDefault();
+    let dropBox = document.getElementById("dropBox");
 
 
     const files = e.dataTransfer.files;
@@ -57,6 +68,9 @@ function handleOnDragLeave(e) {
 
 
       if (file.type == "audio/wav") {
+
+        dropBox.style.backgroundColor = green;
+        dropBox.style.color = "black";
 
       const reader = new FileReader();
       reader.onload = function(event) {
@@ -86,7 +100,9 @@ function handleOnDragLeave(e) {
       setMessage(">> File Dropped <<");
     }
     else {
-      setMessage(">> Invalid File Type <<");
+      setMessage("!! Invalid File Type, Needs To Be WAV !!");
+      setAudioData(null);
+      dropBox.style.backgroundColor = red;
     }
   }
 }
@@ -95,14 +111,15 @@ function handleOnDragLeave(e) {
 
 
 
-  return (<div className="bg-green-200 text-center">
-    <h1 className="py-10">Wav Parser</h1>
+  return (<div className="bg-[--black] text-center">
+    <h1 className="py-10 text-[yellow] text-2xl">File Extractor</h1>
 
 
     <div className="flex flex-col items-center justify-center h-[500] bg-gray-100"
     onDrop={handleOnDrop}
     onDragOver={handleOnDragOver}
     onDragLeave={handleOnDragLeave}
+    id="dropBox"
 
 
     >
@@ -115,18 +132,28 @@ function handleOnDragLeave(e) {
 
     {/* result: */}
 {
-audioData && <div>Result:
+audioData && <div className="text-[--white] mb-12 p-5 bg-[--grey]">
+  <h2 className="text-center text-[--white] text-2xl py-2 mb-10">
+    Result
+    </h2>
 
-<p>chunk Id: {audioData.chunkId}</p>
-<p>chunk Size: {audioData.chunkSize}</p>
-<p>chunk Format: {audioData.format}</p>
-<p>chunk Sub Chunk ID: {audioData.subChunk1Id}</p>
-<p>chunk Audio Format: {audioData.audioFormat}</p>
-<p>chunk Num Channels: {audioData.numChannels}</p>
-<p>chunk Sample Rate: {audioData.sampleRate}</p>
-<p>chunk Byte Rate: BYTE {audioData.byteRate}</p>
-<p>chunk Block Align: {audioData.blockAlign}</p>
-<p>chunk Bits Per Sample: {audioData.bitsPerSample}</p>
+<div className="grid grid-cols-2 gap-1 text-left bg-slate-300 p-2 rounded-lg">
+
+<p className="bg-gray-600 py-4 pl-3 content-center">Header</p><p className="bg-gray-600 py-4 pl-3 content-center">Value</p>
+
+
+<p className={rowStyling}>chunk Id</p><p className={rowStyling}>{audioData.chunkId}</p>
+<p className={rowStyling}>chunk Size</p><p className={rowStyling}> {audioData.chunkSize}</p>
+<p className={rowStyling}>chunk Format</p><p className={rowStyling}> {audioData.format}</p>
+
+<p className={rowStyling}>chunk Sub Chunk ID</p><p className={rowStyling}> {audioData.subChunk1Id}</p>
+<p className={rowStyling}>chunk Audio Format</p><p className={rowStyling}> {audioData.audioFormat}</p>
+<p className={rowStyling}>chunk Num Channels</p><p className={rowStyling}> {audioData.numChannels}</p>
+<p className={rowStyling}>chunk Sample Rate</p><p className={rowStyling}> {audioData.sampleRate}</p>
+<p className={rowStyling}>chunk Byte Rate</p><p className={rowStyling}> BYTE {audioData.byteRate}</p>
+<p className={rowStyling}>chunk Block Align</p><p className={rowStyling}> {audioData.blockAlign}</p>
+<p className={rowStyling}>chunk Bits Per Sample</p><p className={rowStyling}> {audioData.bitsPerSample}</p>
+</div>
 
 
 
