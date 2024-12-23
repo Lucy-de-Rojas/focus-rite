@@ -115,7 +115,7 @@ function handleOnDragLeave(e) {
     <h1 className="py-10 text-[yellow] text-2xl">File Extractor</h1>
 
 
-    <div className="flex flex-col items-center justify-center h-[500] bg-gray-100"
+    <div className="flex flex-col items-center justify-center h-[500px] bg-gray-100"
     onDrop={handleOnDrop}
     onDragOver={handleOnDragOver}
     onDragLeave={handleOnDragLeave}
