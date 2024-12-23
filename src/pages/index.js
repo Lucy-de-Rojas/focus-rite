@@ -7,23 +7,57 @@ export default function Home() {
   console.clear();
 
   const [audioData, setAudioData] = useState(null);
+  const [message, setMessage] = useState(">> Drop Files Here <<");
+  const[allowDrop, setAllowDrop] = useState(false);
 
 
 
 
 
-  function handleOnDragEnter(e) {}
-  function handleOnDragOver(e) {e.preventDefault();}
-  function handleOnDragLeave(e) {}
+
+
+function handleOnDragLeave(e) {
+  e.preventDefault();
+  setMessage(">> Drop Files Here <<");
+}
+
+
+
+
+
+
+  function handleOnDragOver(e) {
+    e.preventDefault();
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
   function handleOnDrop(e) {
     e.preventDefault();
+
+
     const files = e.dataTransfer.files;
 
     if (files.length > 0) {
+
       const file = files[0];
+
+
+      if (file.type == "audio/wav") {
+
       const reader = new FileReader();
       reader.onload = function(event) {
       const arrayBuffer = event.target.result;
@@ -49,27 +83,37 @@ export default function Home() {
       setAudioData(header);
       };
       reader.readAsArrayBuffer(file);
+      setMessage(">> File Dropped <<");
     }
-
+    else {
+      setMessage(">> Invalid File Type <<");
+    }
   }
+}
 
 
 
 
 
-  return (<div className="bg-green-200">
-    <h1>Wav Parser</h1>
+  return (<div className="bg-green-200 text-center">
+    <h1 className="py-10">Wav Parser</h1>
 
 
     <div className="flex flex-col items-center justify-center h-[500] bg-gray-100"
     onDrop={handleOnDrop}
     onDragOver={handleOnDragOver}
+    onDragLeave={handleOnDragLeave}
 
 
     >
 
-  drop files here
+  {message}
     </div>
+
+
+
+
+    {/* result: */}
 {
 audioData && <div>Result:
 
