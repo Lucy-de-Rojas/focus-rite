@@ -8,13 +8,17 @@ export default function Home() {
 
   const [audioData, setAudioData] = useState(null);
   const [message, setMessage] = useState(">> Drop Files Here <<");
-  const[allowDrop, setAllowDrop] = useState(false);
+  const [fileName, setFileName] = useState(null);
 
 
 
   let rowStyling = "bg-[--grey] py-4 pl-3 content-center";
   let red = "#f07777";
   let green = "rgb(165, 241, 141)";
+
+
+
+
 
 
 
@@ -47,6 +51,56 @@ function handleOnDragLeave(e) {
 
 
 
+// input get data:
+function handleSubmit(e) {
+  e.preventDefault();
+
+  let dropBox = document.getElementById("dropBox");
+  const fileInput = document.getElementById('file');
+  const file = fileInput.files[0];
+  setFileName(file.name)
+
+  if (file) {
+
+
+    dropBox.style.backgroundColor = green;
+    dropBox.style.color = "black";
+    setMessage(">> File Dropped <<");
+
+
+          const reader = new FileReader();
+          reader.onload = function(event) {
+                  const arrayBuffer = event.target.result;
+                  const dataView = new DataView(arrayBuffer);
+
+                  const header = {
+                          chunkId: String.fromCharCode(dataView.getUint8(0)) + String.fromCharCode(dataView.getUint8(1)) + String.fromCharCode(dataView.getUint8(2)) + String.fromCharCode(dataView.getUint8(3)),
+                          chunkSize: dataView.getUint32(4, true),
+                          format: String.fromCharCode(dataView.getUint8(8)) + String.fromCharCode(dataView.getUint8(9)) + String.fromCharCode(dataView.getUint8(10)) + String.fromCharCode(dataView.getUint8(11)),
+                          subchunk1Id: String.fromCharCode(dataView.getUint8(12)) + String.fromCharCode(dataView.getUint8(13)) + String.fromCharCode(dataView.getUint8(14)) + String.fromCharCode(dataView.getUint8(15)),
+                          subchunk1Size: dataView.getUint32(16, true),
+                          audioFormat: dataView.getUint16(20, true),
+                          numChannels: dataView.getUint16(22, true),
+                          sampleRate: dataView.getUint32(24, true),
+                          byteRate: dataView.getUint32(28, true),
+                          blockAlign: dataView.getUint16(32, true),
+                          bitsPerSample: dataView.getUint16(34, true),
+                          subchunk2Id: String.fromCharCode(dataView.getUint8(36)) + String.fromCharCode(dataView.getUint8(37)) + String.fromCharCode(dataView.getUint8(38)) + String.fromCharCode(dataView.getUint8(39)),
+                          subchunk2Size: dataView.getUint32(40, true)
+                  };
+
+                  setAudioData(header);
+                  console.log("🔴: ", header);
+          };
+          reader.readAsArrayBuffer(file);
+  }
+
+
+
+}
+
+
+
 
 
 
@@ -65,6 +119,9 @@ function handleOnDragLeave(e) {
     if (files.length > 0) {
 
       const file = files[0];
+      setFileName(file.name)
+
+
 
 
       if (file.type == "audio/wav") {
@@ -111,11 +168,30 @@ function handleOnDragLeave(e) {
 
 
 
-  return (<div className="bg-[--black] text-center">
+  return (<div className="bg-[--black] text-center lg:px-[35%]">
     <h1 className="py-10 text-[yellow] text-2xl">File Extractor</h1>
 
 
-    <div className="flex flex-col items-center justify-center h-[500px] bg-gray-100"
+
+
+
+{/* file input: */}
+<div className="flex justify-center items-center mb-5">
+<label for="file" id="label" className="px-16 py-6 bg-red-300 rounded-full">Get File
+    <input type="file" name="file" id="file" accept="audio/wav" onChange={handleSubmit}  className="hidden" />
+</label>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <div className="flex flex-col items-center justify-center h-[500px] bg-gray-100 rounded-xl"
     onDrop={handleOnDrop}
     onDragOver={handleOnDragOver}
     onDragLeave={handleOnDragLeave}
@@ -130,11 +206,21 @@ function handleOnDragLeave(e) {
 
 
 
+
+
+
+
+
+
+
+
     {/* result: */}
 {
 audioData && <div className="text-[--white] mb-12 p-5 bg-[--grey]">
-  <h2 className="text-center text-[--white] text-2xl py-2 mb-10">
-    Result
+  <h2 className="text-center text-[--white] text-2xl py-2 mb-5">
+    <span className="text-2xl font-black text-yellow-300">
+    {fileName}
+    </span>
     </h2>
 
 <div className="grid grid-cols-2 gap-1 text-left bg-slate-300 p-2 rounded-lg">
@@ -155,10 +241,11 @@ audioData && <div className="text-[--white] mb-12 p-5 bg-[--grey]">
 <p className={rowStyling}>Chunk Bits Per Sample</p><p className={rowStyling}> {audioData.bitsPerSample}</p>
 </div>
 
-
-
 </div>
 }
+
+
+
 
 
 
