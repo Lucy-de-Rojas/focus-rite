@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 
 
@@ -169,7 +170,32 @@ function handleSubmit(e) {
 
 
   return (<div className="bg-[--black] text-center lg:px-[35%]">
+
+  <div className="relative w-full h-64 mb-5">
+
+
+
+    {/* image wrapper: */}
+    <div className="w-1/2 flex justify-center items-center ml-[25%]">
+
+    <Image
+      src="/Media/focusrite-logo-vector.webp"
+      alt="Focusrite Logo"
+      layout="responsive"
+      objectFit="cover"
+      className="rounded-lg"
+      width={500}
+      height={500}
+      />
+      </div>
+
+
+
     <h1 className="py-10 text-[yellow] text-2xl">Wav File Head Parser</h1>
+
+  </div>
+
+
 
 
 
