@@ -231,13 +231,13 @@ audioData && <div className="text-[--white] mb-12 p-5 bg-[--grey]">
 <p className={rowStyling}>Chunk Size</p><p className={rowStyling}> {audioData.chunkSize}</p>
 <p className={rowStyling}>Chunk Format</p><p className={rowStyling}> {audioData.format}</p>
 
-<p className={rowStyling}>Chunk Sub Chunk ID</p><p className={rowStyling}> {audioData.subChunk1Id}</p>
-<p className={rowStyling}>Chunk Audio Format</p><p className={rowStyling}> {audioData.audioFormat}</p>
-<p className={rowStyling}>Chunk Num Channels</p><p className={rowStyling}> {audioData.numChannels}</p>
-<p className={rowStyling}>Chunk Sample Rate</p><p className={rowStyling}> {audioData.sampleRate}</p>
-<p className={rowStyling}>Chunk Byte Rate</p><p className={rowStyling}> BYTE {audioData.byteRate}</p>
-<p className={rowStyling}>Chunk Block Align</p><p className={rowStyling}> {audioData.blockAlign}</p>
-<p className={rowStyling}>Chunk Bits Per Sample</p><p className={rowStyling}> {audioData.bitsPerSample}</p>
+<p className={rowStyling}> Sub Chunk ID</p><p className={rowStyling}> {audioData.subChunk1Id}</p>
+<p className={rowStyling}> Audio Format</p><p className={rowStyling}> {audioData.audioFormat}</p>
+<p className={rowStyling}> Num Channels</p><p className={rowStyling}> {audioData.numChannels}</p>
+<p className={rowStyling}> Sample Rate</p><p className={rowStyling}> {audioData.sampleRate}</p>
+<p className={rowStyling}> Byte Rate</p><p className={rowStyling}> BYTE {audioData.byteRate}</p>
+<p className={rowStyling}> Block Align</p><p className={rowStyling}> {audioData.blockAlign}</p>
+<p className={rowStyling}> Bits Per Sample</p><p className={rowStyling}> {audioData.bitsPerSample}</p>
 </div>
 
 </div>
