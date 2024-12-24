@@ -190,7 +190,6 @@ function handleSubmit(e) {
 
 
 
-
     <div className="flex flex-col items-center justify-center h-[500px] bg-gray-100 rounded-xl"
     onDrop={handleOnDrop}
     onDragOver={handleOnDragOver}

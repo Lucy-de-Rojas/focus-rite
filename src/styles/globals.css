@@ -37,7 +37,9 @@
         --green: rgb(165, 241, 141);
 }
 
-
+body {
+        background-color: var(--black);
+}
 
 * {
         font-family: "TT Regular";
