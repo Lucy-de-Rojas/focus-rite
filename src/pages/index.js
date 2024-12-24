@@ -77,7 +77,7 @@ function handleSubmit(e) {
                           chunkId: String.fromCharCode(dataView.getUint8(0)) + String.fromCharCode(dataView.getUint8(1)) + String.fromCharCode(dataView.getUint8(2)) + String.fromCharCode(dataView.getUint8(3)),
                           chunkSize: dataView.getUint32(4, true),
                           format: String.fromCharCode(dataView.getUint8(8)) + String.fromCharCode(dataView.getUint8(9)) + String.fromCharCode(dataView.getUint8(10)) + String.fromCharCode(dataView.getUint8(11)),
-                          subchunk1Id: String.fromCharCode(dataView.getUint8(12)) + String.fromCharCode(dataView.getUint8(13)) + String.fromCharCode(dataView.getUint8(14)) + String.fromCharCode(dataView.getUint8(15)),
+                          subChunk1Id: String.fromCharCode(dataView.getUint8(12)) + String.fromCharCode(dataView.getUint8(13)) + String.fromCharCode(dataView.getUint8(14)) + String.fromCharCode(dataView.getUint8(15)),
                           subchunk1Size: dataView.getUint32(16, true),
                           audioFormat: dataView.getUint16(20, true),
                           numChannels: dataView.getUint16(22, true),
