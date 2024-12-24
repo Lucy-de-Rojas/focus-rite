@@ -169,7 +169,7 @@ function handleSubmit(e) {
 
 
   return (<div className="bg-[--black] text-center lg:px-[35%]">
-    <h1 className="py-10 text-[yellow] text-2xl">File Extractor</h1>
+    <h1 className="py-10 text-[yellow] text-2xl">Wav File Head Parser</h1>
 
 
 
