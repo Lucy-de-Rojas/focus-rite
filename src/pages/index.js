@@ -166,7 +166,7 @@ function handleSubmit(e) {
 
     {/*LOGO  image wrapper: */}
     <div className="w-full flex justify-center items-center ">
-<div className="w-1/3">
+<div className="w-1/2">
 
     <Image
       src="/Media/focusrite-logo-vector.webp"
