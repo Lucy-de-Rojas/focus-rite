@@ -1,2 +1,2 @@
-# Lucy de Rojas
-## Project - Parse Wav File Head
+# Focusrite Test Project
+## Parse Wav File Head and display outcome

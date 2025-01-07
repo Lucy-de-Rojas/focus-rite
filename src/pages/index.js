@@ -21,20 +21,12 @@ export default function Home() {
 
 
 
-
-
-
-
-
-
 function handleOnDragLeave(e) {
   e.preventDefault();
   setMessage(">> Drop Files Here <<");
   let dropBox = document.getElementById("dropBox");
   dropBox.style.backgroundColor = "white";
 }
-
-
 
 
 
@@ -106,10 +98,7 @@ function handleSubmit(e) {
 
 
 
-
-
-
-
+// handle drop:
   function handleOnDrop(e) {
     e.preventDefault();
     let dropBox = document.getElementById("dropBox");
@@ -169,31 +158,33 @@ function handleSubmit(e) {
 
 
 
-  return (<div className="bg-[--black] text-center lg:px-[35%]">
+  return (<div className="bg-[--black] text-center lg:px-[25%] xl:px-[35%]">
 
-  <div className="relative w-full h-64 mb-5">
+  <div className="w-full h-64 mb-5">
 
 
 
-    {/* image wrapper: */}
-    <div className="w-1/2 flex justify-center items-center ml-[25%]">
+    {/*LOGO  image wrapper: */}
+    <div className="w-full flex justify-center items-center ">
+<div className="w-1/3">
 
     <Image
       src="/Media/focusrite-logo-vector.webp"
       alt="Focusrite Logo"
       layout="responsive"
       objectFit="cover"
-      className="rounded-lg"
+      className="rounded-lg w-1/2"
       width={500}
       height={500}
+
       />
       </div>
-
+      </div>
+{/* end of image logo */}
 
 
     <h1 className="py-10 text-[yellow] text-2xl">Wav File Head Parser</h1>
 
-  </div>
 
 
 
@@ -215,8 +206,8 @@ function handleSubmit(e) {
 
 
 
-
-    <div className="flex flex-col items-center justify-center h-[500px] bg-gray-100 rounded-xl"
+{/* drop area: */}
+    <div className="lg:flex lg:flex-col lg:items-center lg:justify-center h-[300px] bg-gray-100 rounded-xl hidden"
     onDrop={handleOnDrop}
     onDragOver={handleOnDragOver}
     onDragLeave={handleOnDragLeave}
@@ -270,10 +261,10 @@ audioData && <div className="text-[--white] mb-12 p-5 bg-[--grey]">
 }
 
 
+</div>
+
+</div>
 
 
-
-
-    </div>
   );
 }
